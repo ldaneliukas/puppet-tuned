@@ -33,7 +33,7 @@ Facter.add('tuned_profile') do
       ]
 
       alternatives.each do |fn|
-        if FileTest.exists?(fn)
+        if FileTest.exists?(fn) && !File.empty?(fn)
           result = File.foreach(fn).first.chomp
           break
         end
