@@ -21,7 +21,7 @@ class tuned::params {
       $active_profile_conf = 'active_profile'
     }
 
-    'RedHat','CentOS','Scientific','OracleLinux': {
+    'RedHat','CentOS','Scientific','OracleLinux', 'AlmaLinux': {
       case $facts['os']['release']['major'] {
         '6': {
           $majversion = pick($_majversion, '0')
