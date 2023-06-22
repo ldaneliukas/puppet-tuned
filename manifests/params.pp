@@ -4,10 +4,6 @@ class tuned::params {
   $sleep_interval = 1
   $update_interval = 10
 
-    $my_hash = {'key_one' => 'value_one'}
-    if 'key_one' in $my_hash {
-      notice('this will be printed')
-    }
   if 'tuned_version' in $facts and $facts['tuned_version'] =~ /^(\d+)\.[\d\.]+$/ {
     $_majversion = $1
   } else {
