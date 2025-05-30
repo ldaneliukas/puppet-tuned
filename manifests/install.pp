@@ -4,7 +4,7 @@ class tuned::install {
     false => absent
   }
 
-  ensure_packages($tuned::packages, {
+  stdlib::ensure_packages($tuned::packages, {
     ensure => $_ensure,
   })
 }
