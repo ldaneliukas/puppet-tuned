@@ -10,8 +10,11 @@ Facter.add('tuned_version') do
     out = Facter::Core::Execution.exec('tuned --version 2>&1')
     if out && out =~ %r{^tuned ([\d\.]+)$}i
       Regexp.last_match(1)
-    elsif !Facter::Core::Execution.exec('which tuned 2>/dev/null').empty?
-      'unknown'
+    else
+      out = Facter::Core::Execution.exec('which tuned 2>/dev/null')
+      if ! out || out.empty?
+        'unknown'
+      end
     end
   end
 end
@@ -33,7 +36,7 @@ Facter.add('tuned_profile') do
       ]
 
       alternatives.each do |fn|
-        if FileTest.exists?(fn) && !File.empty?(fn)
+        if File.exist?(fn) && !File.empty?(fn)
           result = File.foreach(fn).first.chomp
           break
         end
